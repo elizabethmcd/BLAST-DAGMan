@@ -20,9 +20,11 @@ The goal of this workflow is to simply add protein files and reproducibly create
 
 2. Make a directory with all of your fasta files. If the file extension of the files is different than `.faa`, change the `make-combos.py` script with your specific file extension. Put the scripts in this directory.
 
-3. To run the workflow on an HTCondor system: `condor_submit_dag blast-chtc.dag`.
+3. To change the `blastp` settings, change the script `blast-all.sh`. The `blast-all.sub` script also directs where the BLAST executables are, so change that if need be for your particular system.
 
-4. Your results are now in your specified results directory. What isn't included in these scripts are the added filtering steps I currently use. I use this workflow a lot for running the concatenated BLAST comparisons through MCL. I use such filtering steps at the end of the `combine-cat.sh` script:
+4. To run the workflow on an HTCondor system: `condor_submit_dag blast-chtc.dag`.
+
+5. Your results are now in your specified results directory. What isn't included in these scripts are the added filtering steps I currently use. I use this workflow a lot for running the concatenated BLAST comparisons through MCL. I use such filtering steps at the end of the `combine-cat.sh` script:
 
 ### Filtering
 
@@ -67,4 +69,4 @@ All `.sub` files are condor submission files for the corresponding scripts.
 
 ## Issues/Questions:
 
-If you run into any problems with this workflow, please feel free to submit an Issue or email me at [emcdaniel@wisc.edu](mailto:emcdaniel@wisc.edu). If you have any suggestions about downstream analyses that could be added to this DAGMan, such as MCL (which I have yet to get working through HTCondor because of pesky problems with moving MCL executables), please also contact me!
+If you run into any problems with this workflow, please feel free to submit an Issue or email me at [emcdaniel@wisc.edu](mailto:emcdaniel@wisc.edu). Currently I have only validated this workflow on UW-Madison's Center for High Throughput Computing HTCondor system. These scripts _should_ generally work for any HTCondor system, with the caveat of where executables should be moved and specific CHTC things. If you have any suggestions about downstream analyses that could be added to this DAGMan, such as MCL (which I have yet to get working through HTCondor because of pesky problems with moving MCL executables), please also contact me!
