@@ -63,7 +63,7 @@ All `.sub` files are condor submission files for the corresponding scripts.
 ## References:
 
 - [HTCondor Page on DAGMan](https://research.cs.wisc.edu/htcondor/dagman/dagman.html)
-- Shoutout to [Sarah Stevens](https://github.com/sstevens2) giving me the idea to run this analysis as a DAGMan and for helping me in the initial stages as I banged my head against the wall that is HTCondor.
+- Shoutout to [Sarah Stevens](https://github.com/sstevens2) for giving me the idea to run this analysis as a DAGMan and for helping me in the initial stages as I banged my head against the wall that is HTCondor.
 
 ## Issues/Questions:
 
