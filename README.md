@@ -1,6 +1,8 @@
 # Directed Acyclic Graph Manager (DAGMan) for BLAST all-v-all on HTCondor
 
-This subdirectory contains code for the DAGMan to run BLAST all-v-all on HTCondor. The goal of this workflow is to simply add protein files, press a button, and reproducibly create the workflow and data again and again without too much work/pain involved. The DAG overall performs such:
+This directory contains code for running BLAST all-v-all as a DAGMan on HTCondor. Directed Acylic Graph Managers is a meta-schedule for HTCondor. This workflow is used to manage multiple dependencies between jobs. See References below for a full description of DAGMans and the manual.  
+
+The goal of this workflow is to simply add protein files and reproducibly create BLASTP all-v-all comparisons the workflow  without too much work/pain involved. The DAG overall performs such:
 
 1. Forms a list of all `.faa` files in the current directory to a `genomes-list.txt` file for the blast databases to be made from all possible combinations.
 
@@ -39,8 +41,7 @@ done
 
 Right now the scripts are set up just to move the concatenated raw comparison files and the combined `.faa` files to your results directory. This script is where you can change the filtering parameters.
 
-
-## Explanation of scripts and workflow:
+## Explanation of Scripts:
 
 
 `blast-chtc.dag` is the roadmap for this entire process. It maps out the sequential steps of the workflow, pre and post scripts, and the jobs for which submission and executable scripts should be called at which place in the workflow.
@@ -61,4 +62,9 @@ All `.sub` files are condor submission files for the corresponding scripts.
 
 ## References:
 
-[HTCondor Page on DAGMan](https://research.cs.wisc.edu/htcondor/dagman/dagman.html)
+- [HTCondor Page on DAGMan](https://research.cs.wisc.edu/htcondor/dagman/dagman.html)
+- Shoutout to [Sarah Stevens](https://github.com/sstevens2) giving me the idea to run this analysis as a DAGMan and for helping me in the initial stages as I banged my head against the wall that is HTCondor.
+
+## Issues/Questions:
+
+If you run into any problems with this workflow, please feel free to submit an Issue or email me at [emcdaniel@wisc.edu](mailto:emcdaniel@wisc.edu). If you have any suggestions about downstream analyses that could be added to this DAGMan, such as MCL (which I have yet to get working through HTCondor because of pesky problems with moving MCL executables), please also contact me!
