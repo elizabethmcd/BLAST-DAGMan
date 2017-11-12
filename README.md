@@ -1,12 +1,12 @@
 # Directed Acyclic Graph Manager (DAGMan) for BLAST all-v-all on HTCondor
 
-This directory contains code for running BLAST all-v-all as a DAGMan on HTCondor. Directed Acylic Graph Managers is a meta-schedule for HTCondor. This workflow is used to manage multiple dependencies between jobs. See References below for a full description of DAGMans and the manual.  
+This directory contains code for running BLAST all-v-all as a DAGMan on HTCondor. A Directed Acylic Graph Manager is a meta-schedule for HTCondor. This workflow is used to manage multiple dependencies between jobs. See References below for a full description of DAGMans and the manual.  
 
-The goal of this workflow is to simply add protein files and reproducibly create BLASTP all-v-all comparisons the workflow  without too much work/pain involved. The DAG overall performs such:
+The goal of this workflow is to simply add protein files and reproducibly create BLASTP all-v-all comparisons without too much work/pain involved. The DAG overall performs such:
 
 1. Forms a list of all `.faa` files in the current directory to a `genomes-list.txt` file for the blast databases to be made from all possible combinations.
 
-2. Makes the blast databases for each genome
+2. Makes the blast databases for each protein file
 
 3. Writes the DAG for the BLAST function
 
