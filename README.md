@@ -10,15 +10,34 @@ This subdirectory contains code for the DAGMan to run BLAST all-v-all on HTCondo
 
 4. Performs blast all-v-all blastp on all combinations of BLAST databases
 
-5. Concatenates the files into one for further analyses, such as MCL on a local computer or the VM, because CHTC does weird things with MCL executables. As of 2017-11-11, I am trying to work on getting MCL to work through CHTC/DAG as well so the files don't have to be moved somewhere else for this. *Note: There are scripts in this directory for running MCL, but they are not part of the DAG workflow.*
+5. Concatenates the result files and `.faa` together for further analyses, such as MCL. As of 2017-11-11, I am trying to work on getting MCL to work through CHTC/DAG as well so the files don't have to be moved somewhere else for this.
 
 ## Run the Workflow:
 
-1. Make some "results" directory. My preference is YYYY-MM-DD-identifying-info. Change the end of the `combine-cat.sh` script with the name of this directory to move the results file into at the end of the DAGMan. The initial repository gets messy really quickly.
+1. Make some "results" directory. My preference is YYYY-MM-DD-identifying-info. Change the `combine-cat.sh` script with the name of this directory to move the results file into at the end of the DAGMan. The initial repository gets messy really quickly. Also change the names of the results files for the concatenated BLAST all-v-all results and the `.faa` files.
 
 2. Make a directory with all of your fasta files. If the file extension of the files is different than `.faa`, change the `make-combos.py` script with your specific file extension. Put the scripts in this directory.
 
-3. To run the workflow on an HTCondor system: `condor_submit_dag blast-chtc.dag`. 
+3. To run the workflow on an HTCondor system: `condor_submit_dag blast-chtc.dag`.
+
+4. Your results are now in your specified results directory. What isn't included in these scripts are the added filtering steps I currently use. I use this workflow a lot for running the concatenated BLAST comparisons through MCL. I use such filtering steps at the end of the `combine-cat.sh` script:
+
+### Filtering
+
+```
+awk ' $13 > 75 ' combined-blast-results.txt > 2017-10-13-combined-deltaprot.qcov75.results
+awk ' $3 > 50 ' 2017-10-13-combined-deltaprot.qcov75.results > 2017-10-13-combined-deltaprot.qcov75.id50.results
+awk ' $3 > 60 ' 2017-10-13-combined-deltaprot.qcov75.results > 2017-10-13-combined-deltaprot.qcov75.id60.results
+awk ' $3 > 70 ' 2017-10-13-combined-deltaprot.qcov75.results > 2017-10-13-combined-deltaprot.qcov75.id70.results
+
+# Filter the already filtered blast results to not have the qcov value, because MCL doesn't like it for whatever reason
+
+for filename in *.results
+  do cat $filename | cut -f1-12 > $filename.noqcov
+done
+```
+
+Right now the scripts are set up just to move the concatenated raw comparison files and the combined `.faa` files to your results directory. This script is where you can change the filtering parameters. 
 
 
 ## Explanation of scripts and workflow:
