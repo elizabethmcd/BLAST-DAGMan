@@ -1,0 +1,31 @@
+# Make file database
+universe = vanilla
+
+# Log/error/output
+
+log = make-blast-db-$(Cluster).log
+error = $(filename)-makedb.err
+output = $(filename)-makedb.out
+
+# Transfer files
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = $(filename), /squid/blast2.2.29/bin/makeblastdb 
+
+# Executable 
+
+executable = makedb.sh
+arguments = $(filename) 
+
+# Tell HTCondor what amount of compute resources
+
+request_cpus = 1
+request_memory = 500MB
+request_disk = 500MB
+
+# Queue
+
+queue filename from genome-list.txt
+
+

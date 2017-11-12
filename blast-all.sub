@@ -1,0 +1,23 @@
+# blast-all.sub - submission script  
+universe = vanilla
+# Log/error/output
+log = blast-chtc-$(Cluster).log
+error = blast-chtc-$(query)-vs-$(db).err
+output = blast-chtc-$(query)-vs-$(db).out
+
+# Execute
+executable = blast-all.sh
+arguments = $(Process) $(db) $(query)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = $(db).phr,$(db).pin,$(db).psq,$(query),/squid/blast2.2.29/bin/blastp, /squid/blast2.2.29/bin/blast_formatter
+
+# Tell HTCondor what amount of compute resources
+
+request_cpus = 1
+request_memory = 1GB
+request_disk = 250MB
+
+# Tell HTCondor to run n instances of our job:
+queue 

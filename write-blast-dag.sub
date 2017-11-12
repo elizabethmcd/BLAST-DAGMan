@@ -1,0 +1,29 @@
+# Make file database
+universe = vanilla
+
+# Log/error/output
+
+log = write-blast-dag-$(Cluster).log
+error = write-blast-dag.err
+output = write-blast-dag.out
+
+# Transfer files
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = blast-combos.txt
+
+# Executable 
+
+executable = make-blast-dag.py
+arguments = blast-combos.txt
+
+# Tell HTCondor what amount of compute resources
+
+request_cpus = 1
+request_memory = 100MB
+request_disk = 100MB
+
+# Queue
+
+queue 

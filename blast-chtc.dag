@@ -1,0 +1,24 @@
+# DAGfile for identifying orthologous genes for MeHg project
+
+# Specify jobs
+
+JOB makedb makedb.sub
+
+JOB writeblastdag write-blast-dag.sub
+
+SUBDAG EXTERNAL blast blast.dag
+
+SCRIPT PRE makedb make-combos.py
+
+SCRIPT POST blast combine-filter.sh
+
+
+# Specify parent-child relationships, has to run in a certain order
+
+PARENT makedb CHILD writeblastdag
+
+PARENT writeblastdag CHILD blast 
+
+
+
+
