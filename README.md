@@ -37,7 +37,7 @@ for filename in *.results
 done
 ```
 
-Right now the scripts are set up just to move the concatenated raw comparison files and the combined `.faa` files to your results directory. This script is where you can change the filtering parameters. 
+Right now the scripts are set up just to move the concatenated raw comparison files and the combined `.faa` files to your results directory. This script is where you can change the filtering parameters.
 
 
 ## Explanation of scripts and workflow:
@@ -57,7 +57,7 @@ All `.sub` files are condor submission files for the corresponding scripts.
 
 `blast-all.sh` performs BLAST all-v-all
 
-`combine-cat.sh` concatenates the BLAST all-v-all results into one giant file for further analyses, such as MCL that I will reference in another folder since I either have to do that on my local computer or the CCI VMs. Currently this script also filtes the blast results for MCL results. It also moves the results to a separate directory so you don't have to fish through the giant directory of BLAST databases and comparisons for your result files. So make that directory ahead of time.
+`combine-cat.sh` concatenates the BLAST all-v-all results into one giant file for further analyses. It also moves the results to a separate directory so you don't have to fish through the giant directory of BLAST databases and comparisons for your result files. So make that directory ahead of time.
 
 ## References:
 
