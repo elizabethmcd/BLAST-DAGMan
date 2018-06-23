@@ -8,7 +8,7 @@ genomelist = glob.glob("*.faa")
 
 # Write file with list of genomes
 
-with open("genomes-list.txt", "w") as output:
+with open("genome-list.txt", "w") as output:
 	for genome in genomelist:
 		output.write(genome + "\n")
 
