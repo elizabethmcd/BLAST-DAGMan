@@ -10,7 +10,7 @@ SUBDAG EXTERNAL blast blast.dag
 
 SCRIPT PRE makedb make-combos.py
 
-SCRIPT POST blast combine-filter.sh
+SCRIPT POST blast combine-cat.sh
 
 
 # Specify parent-child relationships, has to run in a certain order
